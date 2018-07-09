@@ -1,18 +1,17 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet"  type="text/css" href="{% static "style.css" %}"/>
+    <link rel="stylesheet"  type="text/css" href="style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
 </head>
 <body>
     <div class="wrapper"></div>
     <div class="header" id="header">
-        <div class="logotype"><a href="{% url 'main' %}">Builder's assistant</a></div>
+        <div class="logotype"><a href="#">Builder's assistant</a></div>
         <div class="buttons">
             <button type="button" class="button in">Войти</button>
             <button type="button" class="button out">Выйти</button>
@@ -20,18 +19,18 @@
         </div>
         <div class="hello">Добро пожаловать: <strong>Гость</strong></div>
         <ul class="social">
-            <li><a href="#" class="facebook"><img src="{% static "images/facebook.png" %}" width="25" height="25"></a></li>
-            <li><a href="#" class="linkedin"><img src="{% static "images/linkedin.png" %}" width="25" height="25"></a></li>
-            <li><a href="#" class="google"><img src="{% static "images/google_plus.png" %}" width="25" height="25"></a></li>
-            <li><a href="#" class="twitter"><img src="{% static "images/twitter.png" %}" width="25" height="25"></a></li>
+            <li><a href="#" class="facebook"><img src="static/facebook.png" width="25" height="25"></a></li>
+            <li><a href="#" class="linkedin"><img src="static/linkedin.png" width="25" height="25"></a></li>
+            <li><a href="#" class="google"><img src="static/google_plus.png" width="25" height="25"></a></li>
+            <li><a href="#" class="twitter"><img src="static/twitter.png" width="25" height="25"></a></li>
         </ul>
     </div>
     <div class="content">
             <ul class="menu-bar">
-                <li class="current" ><a href="{% url 'main' %}">Главная</a></li>
+                <li class="current" ><a href="index.html">Главная</a></li>
                 <li><a href="forum.html">Форум</a></li>
-                <li id="active-bar"><a href="calc.html">Калькулятор</a>
-                    <ul class= "sub-menu-bar">
+                <li id="active-bar"><a href="calc.html">Калькулятор</a></li>
+                    <ul class= "sub-menu-bar" ng-show="signedIn()">
                         <li><a href="#">Расчет болтового соединения через фасонку</a></li>
                         <li><a href="#">Расчет сварного соединения через фасонку</a></li>
                         <li><a href="#">Расчет сварного соединения через столик</a></li>
@@ -60,70 +59,17 @@
                 <input type="password" name="repeat" class="text-line">
                 <button type="submit" name="registration" class="button">Зарегестрироватся</button>
             </form>
-            <div class="tab-name"><img src="{% static "images/home.png" %}"><span>Главная страница</span></div>
+            <div class="tab-name"><img src="static/home.png"><span>Главная страница</span></div>
             <div class="middle">
-                <div class="prev-articles first">
+                <div class="full-article">
                     <img src="static/1.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
+                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится </p>
                     <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="full_article.html"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/2.jpg" class="image">
-                    <p class="caption">Очень большой и длинный заголовок но в 3 строки должен выровнятся</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/3.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/4.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/1.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/2.jpg" class="image">
-                    <p class="caption">Очень большой и длинный заголовок но в 3 строки должен выровнятся</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/3.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/4.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="#"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="pages">
-                    <p>Страницы: </p>
-                    <div class="prev"><a href=""><img src="{% static "images/left.png" %}"></a></div>
-                    <div><a href="">1</a></div>
-                    <div><a href="">2</a></div>
-                    <div class="next"><a href=""><img src="{% static "images/right.png" %}"></a></div>
+                    <p class="text">Цветовая палитра №3546
+В палитре легкие светлые тона прекрасно сочетаются с насыщенными и глубокими: бархатисто-фиолетовый и небесно-голубой, аметист и розовый кварц, сирень и крокус. Эти цвета таинственны, очаровательны и помогут женщине создать образ Прекрасной Незнакомки в изысканном вечернем платье. Фиалковые тени сделают взгляд игривым, а розовые аксессуары добавят образу беззаботности. Цветовая палитра №3546
+В палитре легкие светлые тона прекрасно сочетаются с насыщенными и глубокими: бархатисто-фиолетовый и небесно-голубой, аметист и розовый кварц, сирень и крокус. Эти цвета таинственны, очаровательны и помогут женщине создать образ Прекрасной Незнакомки в изысканном вечернем платье. Фиалковые тени сделают взгляд игривым, а розовые аксессуары добавят образу беззаботности. Цветовая палитра №3546
+В палитре легкие светлые тона прекрасно сочетаются с насыщенными и глубокими: бархатисто-фиолетовый и небесно-голубой, аметист и розовый кварц, сирень и крокус. Эти цвета таинственны, очаровательны и помогут женщине создать образ Прекрасной Незнакомки в изысканном вечернем платье. Фиалковые тени сделают взгляд игривым, а розовые аксессуары добавят образу беззаботности. Цветовая палитра №3546
+В палитре легкие светлые тона прекрасно сочетаются с насыщенными и глубокими: бархатисто-фиолетовый и небесно-голубой, аметист и розовый кварц, сирень и крокус. Эти цвета таинственны, очаровательны и помогут женщине создать образ Прекрасной Незнакомки в изысканном вечернем платье. Фиалковые тени сделают взгляд игривым, а розовые аксессуары добавят образу беззаботности.</p>
                 </div>
             </div>
             <div class="right-bar">
@@ -142,7 +88,7 @@
                     <li><a href="#">чтото из топа <span>Количество просмотров</span></a></li>
                 </ul>
             </div>
-        <div class="back"><a href="#header"><img src="{% static "images/bolt.png" %}"></a></div>
+        <div class="back"><a href="#header"><img src="static/bolt.png"></a></div>
     </div>
     <div class="footer">
         <div class="logotype"><a href="#">Builder's assistant</a></div>

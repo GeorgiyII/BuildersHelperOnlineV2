@@ -1,0 +1,61 @@
+.content .middle .calculation .image {
+	width: 500px;
+	margin-left: 140px;
+	margin-top: 50px;
+}
+.content .middle .calculation .beam-hst {
+	display: block;
+	position: absolute;
+	top: 330px;
+	left: 600px;
+}
+.content .middle .calculation .beam-hst input {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 70px;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+.content .middle .calculation .beam-tst {
+	display: block;
+	position: absolute;
+	top: 250px;
+	left: 250px;
+}
+.content .middle .calculation .beam-tst input {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 70px;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+.content .middle .calculation .beam-b {
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 350px;
+}
+.content .middle .calculation .beam-b input {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 70px;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+.content .middle .calculation .beam-tp {
+	display: block;
+	position: absolute;
+	top: 170px;
+	left: 110px;
+}
+.content .middle .calculation .beam-tp input {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 70px;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 5px;
+}

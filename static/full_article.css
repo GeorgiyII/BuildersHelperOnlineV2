@@ -1,0 +1,35 @@
+.content .middle .full-article {
+	width: 800px;
+	background-color: white;
+	border-radius: 5px;
+	display: inline-block;
+	margin-right: 60px;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+	box-sizing: border-box;
+	position: relative;
+}
+.content .middle .full-article .image {
+	width: 100%;
+	margin-bottom: 0;
+	border-radius: 5px 5px 0 0;
+	margin-bottom: 10px;
+}
+.content .middle .full-article .caption {
+	font-size: 23px;
+	padding: 10px 20px 0 20px;
+	margin-bottom: 20px;
+	margin-top: 0;
+}
+.content .middle .full-article .text {
+	font-size: 18px;
+	padding: 10px 20px 20px 20px;
+	margin-top: 0;
+}
+.content .middle .full-article .author {
+	font-size: 15px;
+	padding: 10px 20px 0 20px;
+	color: #a3a1a1;
+	margin-top: 0;
+	margin-bottom: 0;
+}
