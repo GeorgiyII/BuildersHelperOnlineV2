@@ -24,4 +24,14 @@ from calculator.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateMain.as_view(), name='main'),
+    path('news/', TemplateNews.as_view(), name='news'),
+    path('forum/', TemplateForum.as_view(), name='forum'),
+    path('calculator/', TemplateCalculator.as_view(), name='calculator'),
+    path('calculator/bolts_number/', BoltsNumber.as_view(), name='bolts_number'),
+    path('calculator/welding_fas/', WeldingFas.as_view(), name='welding_fas'),
+    path('calculator/welding_table/', WeldingTable.as_view(), name='welding_table'),
+    path('calculator/welding_frame/', WeldingFrame.as_view(), name='welding_frame'),
+    path('calculator/beam/', WeldingBead.as_view(), name='beam'),
+    path('calculator/sweep_pipe/', SweepPipe.as_view(), name='sweep_pipe'),
+    path('contacts/', TemplateContacts.as_view(), name='contacts'),
 ]

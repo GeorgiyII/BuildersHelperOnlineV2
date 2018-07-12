@@ -1,145 +1,100 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet"  type="text/css" href="style.css"/>
-</head>
-<body>
-    <div class="header">
-        <div class="logotype"><a href="#">Builder's assistant</a></div>
-        <div class="buttons">
-            <button type="button" class="button in">Войти</button>
-            <button type="button" class="button out">Выйти</button>
-            <button type="button" class="button reg">Зарегестрироватся</button>
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="tab-name"><img src="{% static "images/forum.png" %}"><span>Форум</span></div>
+    <div class="middle">
+        <p class="show-hide"><a href="#">Написать сообщение</a></p>
+        <div class="message form">
+            <form method="post">
+                <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
+                <input type="text" name="theme" class="theme-text" placeholder="Название темы">
+                <button type="button" name="send-message" class="button">Отправить сообщение</button>
+            </form>
         </div>
-        <div class="hello">Добро пожаловать: <strong>Гость</strong></div>
-        <ul class="social">
-            <li><a href="#" class="facebook"><img src="static/facebook.png" width="25" height="25"></a></li>
-            <li><a href="#" class="linkedin"><img src="static/linkedin.png" width="25" height="25"></a></li>
-            <li><a href="#" class="google"><img src="static/google_plus.png" width="25" height="25"></a></li>
-            <li><a href="#" class="twitter"><img src="static/twitter.png" width="25" height="25"></a></li>
-        </ul>
+        <div class="message">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст,
+                который не помещается в одну строку</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
+        </div>
+        <p class="show-hide"><a href="#">Написать комментарии</a></p>
+        <div class="message comment form">
+            <form method="post">
+                <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
+                <input type="text" name="theme" class="theme-text" placeholder="Название темы">
+                <button type="button" name="send-message" class="button">Отправить сообщение</button>
+            </form>
+        </div>
+        <p class="show-hide"><a href="#">Показать комментарии</a></p>
+        <div class="message comment">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Тект комментария, можно не очень длинный</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в
+                одну строку то должно перенестись нормально</a></p>
+        </div>
+        <p class="show-hide"><a href="#">Написать комментарии</a></p>
+        <div class="message comment-to-comment form">
+            <form method="post">
+                <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
+                <input type="text" name="theme" class="theme-text" placeholder="Название темы">
+                <button type="button" name="send-message" class="button">Отправить сообщение</button>
+            </form>
+        </div>
+        <div class="message comment-to-comment">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения
+                модели</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
+        </div>
+        <div class="message">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст,
+                который не помещается в одну строку</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
+        </div>
+        <p class="show-hide"><a href="#">Показать комментарии</a></p>
+        <div class="message comment">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Тект комментария, можно не очень длинный</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в
+                одну строку то должно перенестись нормально</a></p>
+        </div>
+        <div class="message comment-to-comment">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения
+                модели</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
+        </div>
+        <div class="message">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст,
+                который не помещается в одну строку</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
+        </div>
+        <p class="show-hide"><a href="#">Показать комментарии</a></p>
+        <div class="message comment">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Тект комментария, можно не очень длинный</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в
+                одну строку то должно перенестись нормально</a></p>
+        </div>
+        <div class="message comment-to-comment">
+            <p class="author">Автор сообщения <span>//дата публикации</span></p>
+            <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения
+                модели</p>
+            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
+        </div>
+        <div class="pages">
+            <p>Страницы: </p>
+            <div class="prev"><a href="">Пр.</a></div>
+            <div><a href="">1</a></div>
+            <div><a href="">2</a></div>
+            <div class="next"><a href="">Сл.</a></div>
+        </div>
     </div>
-    <div class="content">
-            <ul class="menu-bar">
-                <li><a href="index.html">Главная</a></li>
-                <li class="current"><a href="forum.html">Форум</a></li>
-                <li><a href="calc.html">Калькулятор</a></li>
-                    <ul class= "sub-menu-bar">
-                        <li><a href="#">Расчет болтового соединения через фасонку</a></li>
-                        <li><a href="#">Расчет сварного соединения через фасонку</a></li>
-                        <li><a href="#">Расчет сварного соединения через столик</a></li>
-                        <li><a href="#">Расчет рамного соединения</a></li>
-                        <li><a href="#">Расчет сварного двутавра</a></li>
-                        <li><a href="#">Построение линии реза пересечения труб</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Контакты</a></li>
-            </ul>
-            <div class="tab-name"><img src="static/forum.png"><span>Форум</span></div>
-            <div class="middle">
-                <p class="show-hide"><a href="#">Написать сообщение</a></p>
-                <div class="message form">
-                    <form method="post">
-                        <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
-                        <input type="text" name="theme" class="theme-text" placeholder="Название темы">
-                        <button type="button" name="send-message" class="button">Отправить сообщение</button>
-                    </form>
-                </div>
-                <div class="message">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст, который не помещается в одну строку</p>
-                    <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-                </div>
-                <p class="show-hide"><a href="#">Написать комментарии</a></p>
-                <div class="message comment form">
-                    <form method="post">
-                        <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
-                        <input type="text" name="theme" class="theme-text" placeholder="Название темы">
-                        <button type="button" name="send-message" class="button">Отправить сообщение</button>
-                    </form>
-                </div>
-                <p class="show-hide"><a href="#">Показать комментарии</a></p>
-                <div class="message comment">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Тект комментария, можно не очень длинный</p>
-                    <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в одну строку то должно перенестись нормально</a></p>
-                </div>
-                <p class="show-hide"><a href="#">Написать комментарии</a></p>
-                <div class="message comment-to-comment form">
-                    <form method="post">
-                        <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
-                        <input type="text" name="theme" class="theme-text" placeholder="Название темы">
-                        <button type="button" name="send-message" class="button">Отправить сообщение</button>
-                    </form>
-                </div>
-                <div class="message comment-to-comment">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения модели</p>
-                     <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-                </div>
-                <div class="message">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст, который не помещается в одну строку</p>
-                    <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-                </div>
-                <p class="show-hide"><a href="#">Показать комментарии</a></p>
-                <div class="message comment">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Тект комментария, можно не очень длинный</p>
-                    <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в одну строку то должно перенестись нормально</a></p>
-                </div>
-                <div class="message comment-to-comment">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения модели</p>
-                     <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-                </div>
-                <div class="message">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст, который не помещается в одну строку</p>
-                    <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-                </div>
-                <p class="show-hide"><a href="#">Показать комментарии</a></p>
-                <div class="message comment">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Тект комментария, можно не очень длинный</p>
-                    <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в одну строку то должно перенестись нормально</a></p>
-                </div>
-                <div class="message comment-to-comment">
-                    <p class="author">Автор сообщения <span>//дата публикации</span></p>
-                    <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения модели</p>
-                     <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-                </div>
-                <div class="pages">
-                    <p>Страницы: </p>
-                    <div class="prev"><a href="">Пр.</a></div>
-                    <div><a href="">1</a></div>
-                    <div><a href="">2</a></div>
-                    <div class="next"><a href="">Сл.</a></div>
-                </div>
-            </div>
-            <div class="right-bar">
-                <p class="right-name">Темы форума</p>
-                <ul class="right-top">
-                    <li><a href="#">Тема для быстрого поиска и сортировки а если будет длиннеее чем надо что будет</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                    <li><a href="#">Тема для быстрого поиска и сортировки</a></li>
-                </ul>
-            </div>
-        <div class="back"><a href="#"><img src="static/forrst.png" width="50px" height="50px"></a></div>
-    </div>
-    <div class="footer">
-        <div class="logotype"><a href="#">Builder's assistant</a></div>
-    </div>
-</body>
-</html>
+    {% include 'top_theme.html' %}
+    <div class="back"><a href="#"><img src="{% static 'images/bolt.png' %}" width="50px" height="50px"></a></div>
+     <script>
+        $('.menu-bar li:eq(1)').addClass('current');
+    </script>
+{% endblock %}

@@ -1,104 +1,72 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet"  type="text/css" href="style.css"/>
-</head>
-<body>
-    <div class="header">
-        <div class="logotype"><a href="#">Builder's assistant</a></div>
-        <div class="buttons">
-            <button type="button" class="button in">Войти</button>
-            <button type="button" class="button out">Выйти</button>
-            <button type="button" class="button reg">Зарегестрироватся</button>
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="tab-name"><img src="{% static 'images/calc.png' %}"><span>Онлайн калькулятор узлов</span></div>
+    <div class="middle">
+        <div class="prev-calc">
+            <img src="{% static 'calc_img/bolts_number/twoimg.png' %}" class="image">
+            <p class="caption">Расчет болтового соединения через фасонку</p>
+            <p class="text">Краткое описание возможеостей данного калькулятора</p>
+            <div class="full-button"><a href="{% url 'bolts_number' %}"><img src="{% static 'images/right2.png' %}"
+                                                      class="arrow"><span>Далее</span></a></div>
         </div>
-        <div class="hello">Добро пожаловать: <strong>Гость</strong></div>
-        <ul class="social">
-            <li><a href="#" class="facebook"><img src="static/facebook.png" width="25" height="25"></a></li>
-            <li><a href="#" class="linkedin"><img src="static/linkedin.png" width="25" height="25"></a></li>
-            <li><a href="#" class="google"><img src="static/google_plus.png" width="25" height="25"></a></li>
-            <li><a href="#" class="twitter"><img src="static/twitter.png" width="25" height="25"></a></li>
+        <div class="prev-calc">
+            <img src="static/2.jpg" class="image">
+            <p class="caption">Расчет сварного соединения через фасонку</p>
+            <p class="text">Краткое описание возможеостей данного калькулятора</p>
+            <div class="full-button"><a href="{% url 'welding_fas' %}"><img src="{% static 'images/right2.png' %}"
+                                                      class="arrow"><span>Далее</span></a></div>
+        </div>
+        <div class="prev-calc">
+            <img src="static/3.jpg" class="image">
+            <p class="caption">Расчет сварного соединения через столик</p>
+            <p class="text">Краткое описание возможеостей данного калькулятора</p>
+            <div class="full-button"><a href="{% url 'welding_table' %}"><img src="{% static 'images/right2.png' %}"
+                                                      class="arrow"><span>Далее</span></a></div>
+        </div>
+        <div class="prev-calc">
+            <img src="static/4.jpg" class="image">
+            <p class="caption">Расчет рамного соединения</p>
+            <p class="text">Краткое описание возможеостей данного калькулятора, но если человек увлекся и не сооблюдал
+                длину описания, что будет, повалится ли все или норм</p>
+            <div class="full-button"><a href="{% url 'welding_frame' %}"><img src="{% static 'images/right2.png' %}"
+                                                      class="arrow"><span>Далее</span></a></div>
+        </div>
+        <div class="prev-calc">
+            <img src="static/1.jpg" class="image">
+            <p class="caption">Расчет сварного двутавра some</p>
+            <p class="text">Краткое описание возможеостей данного калькулятора</p>
+            <div class="full-button"><a href="{% url 'beam' %}"><img src="{% static 'images/right2.png' %}"
+                                                      class="arrow"><span>Далее</span></a></div>
+        </div>
+        <div class="prev-calc">
+            <img src="static/2.jpg" class="image">
+            <p class="caption">Построение линии реза пересечения труб</p>
+            <p class="text">Краткое описание возможеостей данного калькулятора</p>
+            <div class="full-button"><a href="{% url 'sweep_pipe' %}"><img src="{% static 'images/right2.png' %}"
+                                                      class="arrow"><span>Далее</span></a></div>
+        </div>
+        <div class="pages">
+            <p>Страницы: </p>
+            <div class="prev"><a href="">Пр.</a></div>
+            <div><a href="">1</a></div>
+            <div><a href="">2</a></div>
+            <div class="next"><a href="">Сл.</a></div>
+        </div>
+    </div>
+    <div class="right-bar">
+        <p class="right-name">Виды расчетов</p>
+        <ul class="right-top">
+            <li><a href="{% url 'bolts_number' %}">Расчет болтового соединения через фасонку</a></li>
+            <li><a href="{% url 'welding_fas' %}">Расчет сварного соединения через фасонку</a></li>
+            <li><a href="{% url 'welding_table' %}">Расчет сварного соединения через столик</a></li>
+            <li><a href="{% url 'welding_frame' %}">Расчет рамного соединения</a></li>
+            <li><a href="{% url 'beam' %}">Расчет сварного двутавра</a></li>
+            <li><a href="{% url 'sweep_pipe' %}">Построение линии реза пересечения труб</a></li>
         </ul>
     </div>
-    <div class="content">
-            <ul class="menu-bar">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="forum.html">Форум</a></li>
-                <li class="current"><a href="calc.html">Калькулятор</a></li>
-                    <ul class= "sub-menu-bar">
-                        <li><a href="#">Расчет болтового соединения через фасонку</a></li>
-                        <li><a href="#">Расчет сварного соединения через фасонку</a></li>
-                        <li><a href="#">Расчет сварного соединения через столик</a></li>
-                        <li><a href="#">Расчет рамного соединения</a></li>
-                        <li><a href="#">Расчет сварного двутавра</a></li>
-                        <li><a href="#">Построение линии реза пересечения труб</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Контакты</a></li>
-            </ul>
-            <div class="tab-name"><img src="static/calc.png"><span>Онлайн калькулятор узлов</span></div>
-            <div class="middle">
-                <div class="prev-calc">
-                    <img src="static/1.jpg" class="image">
-                    <p class="caption">Расчет болтового соединения через фасонку</p>
-                    <p class="text">Краткое описание возможеостей данного калькулятора</p>
-                    <div class="full-button"><a href="#"><img src="static/right2.png" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-calc">
-                    <img src="static/2.jpg" class="image">
-                    <p class="caption">Расчет сварного соединения через фасонку</p>
-                    <p class="text">Краткое описание возможеостей данного калькулятора</p>
-                    <div class="full-button"><a href="#"><img src="static/right2.png" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-calc">
-                    <img src="static/3.jpg" class="image">
-                    <p class="caption">Расчет сварного соединения через столик</p>
-                    <p class="text">Краткое описание возможеостей данного калькулятора</p>
-                    <div class="full-button"><a href="#"><img src="static/right2.png" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-calc">
-                    <img src="static/4.jpg" class="image">
-                    <p class="caption">Расчет рамного соединения</p>
-                    <p class="text">Краткое описание возможеостей данного калькулятора, но если человек увлекся и не сооблюдал длину описания, что будет, повалится ли все или норм</p>
-                    <div class="full-button"><a href="#"><img src="static/right2.png" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-calc">
-                    <img src="static/1.jpg" class="image">
-                    <p class="caption">Расчет сварного двутавра some</p>
-                    <p class="text">Краткое описание возможеостей данного калькулятора</p>
-                    <div class="full-button"><a href="#"><img src="static/right2.png" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-calc">
-                    <img src="static/2.jpg" class="image">
-                    <p class="caption">Построение линии реза пересечения труб</p>
-                    <p class="text">Краткое описание возможеостей данного калькулятора</p>
-                    <div class="full-button"><a href="#"><img src="static/right2.png" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="pages">
-                    <p>Страницы: </p>
-                    <div class="prev"><a href="">Пр.</a></div>
-                    <div><a href="">1</a></div>
-                    <div><a href="">2</a></div>
-                    <div class="next"><a href="">Сл.</a></div>
-                </div>
-            </div>
-            <div class="right-bar">
-                <p class="right-name">Виды расчетов</p>
-                <ul class="right-top">
-                    <li><a href="bolts_number.html">Расчет болтового соединения через фасонку</a></li>
-                    <li><a href="welding_fas.html">Расчет сварного соединения через фасонку</a></li>
-                    <li><a href="welding_table.html">Расчет сварного соединения через столик</a></li>
-                    <li><a href="welding_frame.html">Расчет рамного соединения</a></li>
-                    <li><a href="welding_bead.html">Расчет сварного двутавра</a></li>
-                    <li><a href="sweep_pipe.html">Построение линии реза пересечения труб</a></li>
-                </ul>
-            </div>
-        <div class="back"><a href="#"><img src="static/forrst.png" width="50px" height="50px"></a></div>
-    </div>
-    <div class="footer">
-        <div class="logotype"><a href="#">Builder's assistant</a></div>
-    </div>
-</body>
-</html>
+    <div class="back"><a href="#"><img src="{% static 'images/bolt.png' %}" width="50px" height="50px"></a></div>
+     <script>
+        $('.menu-bar > li:eq(2)').addClass('current');
+    </script>
+{% endblock %}
