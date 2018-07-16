@@ -14,6 +14,7 @@
         </div>
         <div class="calculation">
             <form method="post" action="">
+                {% csrf_token %}
                 <p><span>Выберите единицы измерения для усилия: </span><input name="numeric" type="radio" class="radio"
                                                                               value="1" id="radio_style">Кн
                     <input name="numeric" type="radio" value="0" id="radio_style" class="radio" checked>Кгс</p>
@@ -33,10 +34,10 @@
                     <button type="submit" class="button" id="button">Расчитать</button>
                 </p>
         </div>
-        <div class="calculation">
-            <div class="result">
-                <p>Длина шва L2:{{ result_length }} см.</p>
-                <p>Катет шва h1:{{ result_hweld }} см.</p>
+        <div class="calculation result">
+            <div>
+                <p>Длина шва L2: <strong>{{ result_length }}</strong> см.</p>
+                <p>Катет шва h1: <strong>{{ result_hweld }}</strong> см.</p>
             </div>
         </div>
     </div>

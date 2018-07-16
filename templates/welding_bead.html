@@ -4,10 +4,9 @@
     <div class="tab-name"><img src="{% static 'images/beam.png' %}"><span>Онлайн калькулятор узлов</span></div>
     <div class="middle">
         <div class="description">
-            <p class="caption">Расчет болтового соединения через фасонку</p>
-            <p class="text">Краткое описание возможеостей данного калькулятора</p>
-            <img src="static/1.jpg" class="image">
-            <img src="static/1.jpg" class="image">
+            <p class="caption">Расчет характеристик сварного двутавра</p>
+            <p class="text">Данная программа расчитывает вес погонного метра и момента инерции для сварного двутавра.</p>
+            <img src="{% static 'calc_img/welding_bead/weld_beadimg.png' %}" class="image">
         </div>
         <div class="calculation">
             <img src="{% static 'images/weld_beadimg.png' %}" class="image">
@@ -23,9 +22,13 @@
                 <p>
                     <button type="submit" id="button" class="button">Расчитать</button>
                 </p>
+            </form>
+        </div>
+        <div class="calculation result">
+            <div>
                 <p>Ix={{ result_ix }} см4</p>
                 <p>M={{ result_m }} кг/м</p>
-            </form>
+            </div>
         </div>
     </div>
     {% include 'top_calc.html' %}

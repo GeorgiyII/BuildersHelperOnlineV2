@@ -17,6 +17,7 @@
         </div>
         <div class="calculation">
             <form method="post" action="">
+                {% csrf_token %}
                 <p><span>Выберите единицы измерения для усилия: </span><input name="numeric" type="radio" value="1"
                                                                               class="radio" id="radio_style">Кн
                     <input name="numeric" type="radio" value="0" id="radio_style" class="radio" checked>Кгс</p>
@@ -65,10 +66,10 @@
                 </p>
             </form>
         </div>
-        <div class="calculation">
-            <div class="result">
+        <div class="calculation result">
+            <div>
                 <p>Несущая способность шва:</p>
-                <p> {{ result }} <= {{ constant }}</p>
+                <p> <strong>{{ result }} <= {{ constant }}</strong></p>
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from calculator.models import BoltArea, ResShear, ResCrushing, StallMark
+from math import ceil, sqrt, tan, cos
 
 
 class TemplateCalculator(TemplateView):
@@ -9,17 +11,101 @@ class TemplateCalculator(TemplateView):
 class BoltsNumber(TemplateView):
     template_name = "bolts_number.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(BoltsNumber, self).get_context_data()
+        context['stall_list'] = combo_box(StallMark.objects.values_list('stall_mark'))
+        context['class_list'] = ['BC', 'A']
+        context['bolts_list'] = combo_box(ResShear.objects.values_list('bolt_class'))
+        context['diam_list'] = combo_box(BoltArea.objects.values_list('bolt_diam'))
+        return context
+
+    def post(self, request):
+        if request.method == 'POST':
+            responce = self.get_context_data()
+            responce['value_force'] = request.POST.get('force')
+            responce['value_nmin'] = request.POST.get('nmin')
+            responce['value_width'] = request.POST.get('width')
+            responce['value_length'] = request.POST.get('length')
+            responce['value_stall'] = request.POST.get('stall')
+            responce['value_class'] = request.POST.get('class')
+            responce['value_bolts'] = request.POST.get('bolts')
+            responce['value_diam'] = int(request.POST.get('diam'))
+            responce['value_ns'] = request.POST.get('ns')
+            responce['value_number'] = request.POST.get('number')
+            number = post_number(request)
+            responce['result_nb'] = post_strength(request)
+            responce['result_number'] = number[2]
+            responce['result_nbs'] = number[0]
+            responce['result_nbp'] = number[1]
+            return render(request, self.template_name, responce)
+
 
 class WeldingFas(TemplateView):
     template_name = "welding_fas.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(WeldingFas, self).get_context_data()
+        context['place_list'] = ['Монтажный', 'Заводской']
+        context['list_number'] = ['Без ответной планки', 'Ответная планка']
+        return context
+
+    def post(self, request):
+        if request.method == 'POST':
+            responce = self.get_context_data()
+            responce['value_force'] = request.POST.get('force')
+            responce['value_nforce'] = request.POST.get('nforce')
+            responce['value_katet'] = request.POST.get('kw')
+            responce['value_length'] = request.POST.get('lw')
+            responce['value_width'] = request.POST.get('width')
+            responce['value_place'] = request.POST.get('place')
+            responce['value_number'] = request.POST.get('plank')
+            responce['result'] = post_fas(request)
+            place = request.POST.get('place')
+            if place == 'Монтажный':
+                responce['constant'] = '1660'
+            else:
+                responce['constant'] = '1980'
+            return render(request, self.template_name, responce)
 
 
 class WeldingTable(TemplateView):
     template_name = "welding_table.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(WeldingTable, self).get_context_data()
+        return context
+
+    def post(self, request):
+        if request.method == 'POST':
+            responce = self.get_context_data()
+            responce['value_force'] = request.POST.get('force')
+            responce['value_hweld'] = request.POST.get('hweld')
+            responce['value_length'] = request.POST.get('length')
+            result = post_table(request)
+            responce['result_length'] = result[0]
+            responce['result_hweld'] = result[1]
+            return render(request, self.template_name, responce)
+
 
 class WeldingFrame(TemplateView):
     template_name = "welding_frame.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(WeldingFrame, self).get_context_data()
+        return context
+
+    def post(self, request):
+        if request.method == 'POST':
+            responce = self.get_context_data()
+            responce['value_force'] = request.POST.get('force')
+            responce['value_moment'] = request.POST.get('moment')
+            responce['value_katet'] = request.POST.get('katet')
+            responce['value_height'] = request.POST.get('height')
+            responce['value_thickness'] = request.POST.get('thickness')
+            result = post_frame(request)
+            responce['result_width'] = result[0]
+            responce['result_length'] = result[1]
+            return render(request, self.template_name, responce)
 
 
 class WeldingBead(TemplateView):
@@ -28,6 +114,40 @@ class WeldingBead(TemplateView):
 
 class SweepPipe(TemplateView):
     template_name = "sweep_pipe.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(SweepPipe, self).get_context_data()
+        return context
+
+    def post(self, request):
+        if request.method == 'POST':
+            responce = self.get_context_data()
+            if 'list' in request.POST:
+                responce['value_diameter_list'] = request.POST.get('diameter_list')
+                responce['value_thickness_list'] = request.POST.get('thickness_list')
+                responce['value_angle_list'] = request.POST.get('angle_list')
+                graphic = post_pipe_list(request)
+                responce['list_graphic'] = graphic
+                responce['result'] = good_vision(graphic)
+                responce['display1'] = 'display: block;'
+            elif 'pipe90' in request.POST:
+                responce['value_diameter_90'] = request.POST.get('diameter_90')
+                responce['value_thickness_90'] = request.POST.get('thickness_90')
+                responce['value_diameter_to_90'] = request.POST.get('diameter_to_90')
+                graphic = post_pipe90(request)
+                responce['list_graphic'] = graphic
+                responce['result'] = good_vision(graphic)
+                responce['display2'] = 'display: block;'
+            elif 'pipe' in request.POST:
+                responce['value_diameter'] = request.POST.get('diameter')
+                responce['value_thickness'] = request.POST.get('thickness')
+                responce['value_diameter_to'] = request.POST.get('diameter_to')
+                responce['value_angle'] = request.POST.get('angle')
+                graphic = post_pipe(request)
+                responce['list_graphic'] = graphic
+                responce['result'] = good_vision(graphic)
+                responce['display3'] = 'display: block;'
+            return render(request, self.template_name, responce)
 
 
 # Функции для расчета болтового соединения
@@ -41,19 +161,19 @@ def combo_box(data_list):
 
 def post_number(request):
     if request.method == 'POST':
-        stalmark = request.POST.get('stal')
+        stallmark = request.POST.get('stall')
         db = request.POST.get('diam')
         if request.POST.get('class') == 'A':
             cls = 'cls_a'
         else:
             cls = 'cls_bc'
-        rbs = Res_shear.objects.values_list('bolt_rbs').get(bolt_class=request.POST.get('bolts'))
+        rbs = ResShear.objects.values_list('bolt_rbs').get(bolt_class=request.POST.get('bolts'))
         force = request.POST.get('force')
         nmin = request.POST.get('nmin')
         ns = request.POST.get('ns')
-        run = Stal_mark.objects.values_list('stal_run').get(stal_mark=stalmark)
-        rbp = Res_crushing.objects.values_list(cls).get(stal_run=run[0])
-        ab = Bolt_area.objects.values_list('bolt_ab').get(bolt_diam=db)
+        run = StallMark.objects.values_list('stall_run').get(stall_mark=stallmark)
+        rbp = ResCrushing.objects.values_list(cls).get(stall_run=run[0])
+        ab = BoltArea.objects.values_list('bolt_ab').get(bolt_diam=db)
         radio = request.POST.get('radio')
 
         return bolts_number([force, rbs[0], rbp[0], ab[0], db, nmin, ns, radio])
@@ -181,7 +301,7 @@ def welding_fas(data):
 
     tw = sqrt((rop / (0.7 * double * hw * lw)) ** 2 + ((6 * rop * l) / (0.7 *
                                                                         double * hw * (lw) ** 2) + (
-                                                       nforce / (0.7 * hw * lw))) ** 2)
+                                                           nforce / (0.7 * hw * lw))) ** 2)
 
     return int(ceil(tw))
 
@@ -303,14 +423,14 @@ def good_vision(data):
     for index, value in data:
         list_data_good.append('{}  :  {}'.format(index, value))
 
-    return list_data_good
+    return '-----'.join(list_data_good)
 
 
 def post_pipe_list(request):
     if request.method == 'POST':
-        diameter = request.POST.get('diameter')
-        thickness = request.POST.get('thickness')
-        angle = request.POST.get('angle')
+        diameter = request.POST.get('diameter_list')
+        thickness = request.POST.get('thickness_list')
+        angle = request.POST.get('angle_list')
 
         return pipe_cylinder([diameter, thickness, angle])
     else:
@@ -321,9 +441,9 @@ def post_pipe_list(request):
 
 def post_pipe90(request):
     if request.method == 'POST':
-        diameter = request.POST.get('diameter')
-        thickness = request.POST.get('thickness')
-        deameter_to = request.POST.get('diameter_to')
+        diameter = request.POST.get('diameter_90')
+        thickness = request.POST.get('thickness_90')
+        deameter_to = request.POST.get('diameter_to_90')
 
         return pipe90([diameter, thickness, deameter_to])
     else:
@@ -471,7 +591,7 @@ def pipe90(data):
         n = 48
     elif 1500 <= diam < 2000:
         n = 64
-    elif diam > 2000:
+    else:
         n = 96
 
     d = diam - 2 * t
@@ -569,7 +689,7 @@ def pipe_pipe(data):
         n = 48
     elif 1500 <= diam < 2000:
         n = 64
-    elif diam > 2000:
+    else:
         n = 96
 
     d = diam - t

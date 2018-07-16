@@ -1,165 +1,197 @@
 /*Окошки для превьюшек калькуляторов*/
 .content .middle .prev-calc {
-	width: 800px;
-	height: 150px;
-	background-color: white;
-	border-radius: 5px;
-	display: inline-block;
-	margin-right: 60px;
-	margin-bottom: 20px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
-	box-sizing: border-box;
-	position: relative;
+    width: 800px;
+    height: 150px;
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 60px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    position: relative;
 }
+
 .content .middle .prev-calc .image {
-	height: 100%;
-	margin-bottom: 0;
-	border-radius: 5px 5px 0 0;
-	float: left;
-	margin-right: 20px;
+    height: 100%;
+    margin-bottom: 0;
+    border-radius: 5px 5px 0 0;
+    float: left;
+    margin-right: 20px;
 }
+
 .content .middle .prev-calc .caption {
-	font-size: 23px;
-	padding: 10px 20px 0 20px;
-	margin-bottom: 0;
-	margin-top: 0;
+    font-size: 23px;
+    padding: 10px 20px 0 20px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
+
 .content .middle .prev-calc .text {
-	font-size: 18px;
-	padding: 10px 20px 20px 20px;
-	margin-top: 0;
+    font-size: 18px;
+    padding: 10px 20px 20px 20px;
+    margin-top: 0;
 }
+
 .content .middle .prev-calc .full-button {
-	width: 80px;
-	height: 30px;
-	margin-left: 250px;
-	border: 1px solid #e0dede;
-	border-radius: 3px;
-	text-align: right;
-	padding: 2px 5px 5px 5px;
-	box-sizing: border-box;
-	background-color: #e0dede; 
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
+    width: 80px;
+    height: 30px;
+    margin-left: 250px;
+    border: 1px solid #e0dede;
+    border-radius: 3px;
+    text-align: right;
+    padding: 2px 5px 5px 5px;
+    box-sizing: border-box;
+    background-color: #e0dede;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
+
 .content .middle .prev-calc .full-button a {
-	text-decoration: none;
-	color: #a3a1a1;
-	font-size: 18px;
-	height: 100%;
-	vertical-align: middle;
+    text-decoration: none;
+    color: #a3a1a1;
+    font-size: 18px;
+    height: 100%;
+    vertical-align: middle;
 }
+
 .content .middle .prev-calc .full-button img {
-	width: 18px;
-	height: 18px;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 5px;
-	transition: all 0.5s;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    transition: all 0.5s;
 }
+
 .content .middle .prev-calc .full-button span {
-	display: inline-block;
-	margin-bottom: 5px;
+    display: inline-block;
+    margin-bottom: 5px;
 }
+
 .content .middle .prev-calc .full-button:hover {
-	background-color: #a97180;
+    background-color: #a97180;
 }
+
 .content .middle .prev-calc .full-button a:hover {
-	color: white;
+    color: white;
 }
+
 .content .middle .prev-calc .full-button:active {
-	background-color: #83b3c9;
+    background-color: #83b3c9;
 }
+
 /*Окно описания калькулятора*/
 .content .middle .description {
-	width: 800px;
-	background-color: white;
-	border-radius: 5px;
-	display: inline-block;
-	margin-right: 60px;
-	margin-bottom: 20px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
-	box-sizing: border-box;
-	position: relative;
+    width: 800px;
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 60px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    position: relative;
 }
+
 .content .middle .description .image {
-	height: 150px;
-	width: 150px;
-	margin-bottom: 0;
-	border-radius: 5px 5px 0 0;
-	margin-left: 10px;
-	margin-bottom: 10px;
+    height: 150px;
+    width: 150px;
+    border-radius: 5px 5px 0 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
+
+.content .middle .prev-calc .image {
+    height: 150px;
+    width: 150px;
+    border-radius: 5px 5px 0 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
 .content .middle .description .caption {
-	font-size: 23px;
-	padding: 10px 20px 0 20px;
-	margin-bottom: 0;
-	margin-top: 0;
-	text-align: center;
+    font-size: 23px;
+    padding: 10px 20px 0 20px;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
 }
+
 .content .middle .description .text {
-	font-size: 18px;
-	padding: 10px 20px 20px 20px;
-	margin-top: 0;
-	text-indent: 20px;
+    font-size: 18px;
+    padding: 10px 20px 20px 20px;
+    margin-top: 0;
+    text-indent: 20px;
 }
+
 /*Окно с формой для ввода данных в калькулятор*/
 .content .middle .calculation {
-	width: 800px;
-	background-color: white;
-	border-radius: 5px;
-	display: inline-block;
-	margin-right: 60px;
-	margin-bottom: 20px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
-	box-sizing: border-box;
-	position: relative;
-	padding: 10px 20px 0 20px;
+    width: 800px;
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 60px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    position: relative;
+    padding: 10px 20px 0 20px;
 }
+
 .content .middle .calculation .radio {
-	margin-left: 20px;
+    margin-left: 20px;
 }
+
 .content .middle .calculation .text-box {
-	margin-left: 10px;
-	margin-right: 10px;
-	width: 70px;
-	border: 1px solid black;
-	border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 70px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
+
 .content .middle .calculation select {
-	width: 70px;
-	margin-left: 10px;
-	border: 1px solid black;
+    width: 70px;
+    margin-left: 10px;
+    border: 1px solid black;
 }
+
 .content .middle .calculation .button {
-	width: 100px;
-	border: 1px solid black;
-	border-radius: 5px;
-	background-color: #e0dede;
-	margin-left: 325px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #e0dede;
+    margin-left: 325px;
 }
+
 .content .middle .calculation .button:hover {
-	color: white;
-	background-color: #a97180;
+    color: white;
+    background-color: #a97180;
 }
+
 .content .middle .calculation .button:active {
-	color: white;
-	background-color: #83b3c9;
+    color: white;
+    background-color: #83b3c9;
 }
-.content .middle .calculation .result {
-	text-align: center;
-	font-size: 20px;
-	display: none;
+
+.content .middle .result {
+    text-align: center;
+    font-size: 18px;
+    display: block;
+    padding: 20px;
 }
 
 /*Блок с графиком для линии реза*/
-.content .middle .result1 {
-	display: block;
+.content .middle .list {
+    display: none;
 }
-.content .middle .result2 {
-	display: block;
+
+.content .middle .pipe90 {
+    display: none;
 }
-.content .middle .result3 {
-	display: block;
+
+.content .middle .pipe {
+    display: none;
 }

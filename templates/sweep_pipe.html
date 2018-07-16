@@ -12,57 +12,67 @@
             <img src="{% static 'calc_img/sweep_pipe/img3.png' %}" class="image">
         </div>
         <div class="calculation">
+            <p class="caption">Пересечение трубы с плоскостью</p>
             <form method="post" action="">
-                <p><span>Диаметр трубы (d):</span><input name="diameter" id="text_box" type="text" class="text-box"
-                                                         value="{{ value_diameter }}"
+                {% csrf_token %}
+                <p><span>Диаметр трубы (d):</span><input name="diameter_list" id="text_box" type="text" class="text-box"
+                                                         value="{{ value_diameter_list }}"
                                                          onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Толщина стенки (t):</span><input name="thickness" id="text_box" type="text"
-                                                          class="text-box" value="{{ value_thickness }}"
+                <p><span>Толщина стенки (t):</span><input name="thickness_list" id="text_box" type="text"
+                                                          class="text-box" value="{{ value_thickness_list }}"
                                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Угол пересечения (B):</span><input name="angle" id="text_box" type="text" class="text-box"
-                                                            value="{{ value_angle }}"
+                <p><span>Угол пересечения (B):</span><input name="angle_list" id="text_box" type="text" class="text-box"
+                                                            value="{{ value_angle_list }}"
                                                             onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">градусов
                 </p>
                 <p>
-                    <button type="submit" class="button" id="button">Расчитать</button>
+                    <button type="submit" name="list" class="button" id="list">Расчитать</button>
                 </p>
             </form>
+            <div class="img"><img src="{% static 'calc_img/sweep_pipe/img1.png' %}" width="200px"></div>
         </div>
-        <div class="calculation result1">
+        <div class="calculation list" style="{{ display1 }}">
             <div class="coordinates">
-                <p>Result: </p>
+                <p>Result: {{ result }} </p>
             </div>
-            <div id="curve_chart"></div>
+            <div id="curve_chart1"></div>
         </div>
         <div class="calculation">
+            <p class="caption">Пересечение трубы с трубой под прямым углом</p>
             <form method="post" action="">
-                <p><span>Диаметр трубы (d):</span><input name="diameter" id="text_box" type="text" class="text-box"
-                                                         value="{{ value_diameter }}"
+                {% csrf_token %}
+                <p><span>Диаметр трубы (d):</span><input name="diameter_90" id="text_box" type="text" class="text-box"
+                                                         value="{{ value_diameter_90 }}"
                                                          onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Толщина стенки (t, мм.):</span><input name="thickness" id="text_box" type="text"
-                                                               class="text-box" value="{{ value_thickness }}"
+                <p><span>Толщина стенки (t, мм.):</span><input name="thickness_90" id="text_box" type="text"
+                                                               class="text-box" value="{{ value_thickness_90 }}"
                                                                onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Угол пересечения (B):</span><input name="angle" id="text_box" type="text" class="text-box"
-                                                            value="{{ value_angle }}"
-                                                            onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">градусов
+                <p><span>Диаметр трубы в которую идет врезка (D):</span><input name="diameter_to_90" id="text_box"
+                                                                               type="text"
+                                                                               class="text-box"
+                                                                               value="{{ value_diameter_to_90 }}"
+                                                                               onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
                 <p>
-                    <button type="submit" class="button" id="button">Расчитать</button>
+                    <button type="submit" name="pipe90" class="button" id="pipe90">Расчитать</button>
                 </p>
             </form>
+            <div class="img"><img src="{% static 'calc_img/sweep_pipe/img2.png' %}" width="200px"></div>
         </div>
-        <div class="calculation result2">
+        <div class="calculation pipe90" style="{{ display2 }}">
             <div class="coordinates">
-                <p>Result: </p>
+                <p>Result: {{ result }} </p>
             </div>
-            <div id="curve_chart"></div>
+            <div id="curve_chart2"></div>
         </div>
         <div class="calculation">
+            <p class="caption">Пересечение трубы с трубой под произвольным углом</p>
             <form method="post" action="">
+                {% csrf_token %}
                 <p><span>Диаметр трубы (d, мм.):</span><input name="diameter" id="text_box" type="text" class="text-box"
                                                               value="{{ value_diameter }}"
                                                               onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
@@ -71,24 +81,31 @@
                                                                class="text-box" value="{{ value_thickness }}"
                                                                onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
+                <p><span>Диаметр трубы в которую идет врезка (D):</span><input name="diameter_to" id="text_box"
+                                                                               type="text"
+                                                                               class="text-box"
+                                                                               value="{{ value_diameter_to }}"
+                                                                               onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
+                </p>
                 <p><span>Угол пересечения (B):</span><input name="angle" id="text_box" type="text" class="text-box"
                                                             value="{{ value_angle }}"
                                                             onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">градусов
                 </p>
                 <p>
-                    <button type="submit" class="button" id="button">Расчитать</button>
+                    <button type="submit" name="pipe" class="button" id="pipe">Расчитать</button>
                 </p>
             </form>
+            <div class="img"><img src="{% static 'calc_img/sweep_pipe/img3.png' %}" width="200px"></div>
         </div>
-        <div class="calculation result3">
+        <div class="calculation pipe" style="{{ display3 }}">
             <div class="coordinates">
-                <p>Result: </p>
+                <p>Result: {{ result }}</p>
             </div>
-            <div id="curve_chart"></div>
+            <div id="curve_chart3"></div>
         </div>
     </div>
     {% include 'top_calc.html' %}
-    <script type="text/javascript">
+    <script>
         google.charts.load('current', {packages: ['corechart', 'line']});
         google.charts.setOnLoadCallback(drawBasic);
 
@@ -96,7 +113,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('number', 'Растояние');
             data.addColumn('number', 'Линия реза');
-            data.addRows([[100, 200], [200, 200]]);
+            data.addRows({{ list_graphic }});
 
             var options = {
                 hAxis: {
@@ -107,9 +124,15 @@
                 }
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-            chart.draw(data, options);
+            var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+            chart1.draw(data, options);
+            var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+            chart2.draw(data, options);
+            var chart3 = new google.visualization.LineChart(document.getElementById('curve_chart3'));
+            chart3.draw(data, options);
         };
+
         $('.menu-bar > li:eq(2)').addClass('current');
+
     </script>
 {% endblock %}

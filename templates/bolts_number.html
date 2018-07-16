@@ -12,7 +12,8 @@
             <img src="{% static 'calc_img/bolts_number/twoimg_2.png' %}" class="image">
         </div>
         <div class="calculation">
-            <form method="post" action="">
+            <form method="post" action="{% url 'bolts_number' %}">
+                {% csrf_token %}
                 <p><span>Выберите единицы измерения для усилия: </span><input name="radio" type="radio" value="1"
                                                                               id="radio_style" class="radio">Кн
                     <input name="radio" type="radio" value="0" id="radio_style" class="radio" checked>Кгс</p>
@@ -27,12 +28,12 @@
                                                                              onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
                 </p>
                 <p><span>Выберите марку стали: </span>
-                    <select id="combo_box" name="stal">
-                        {% for stal in stal_list %}
-                            {% if stal == value_stal %}
-                                <option selected>{{ stal }}</option>
+                    <select id="combo_box" name="stall">
+                        {% for stall in stall_list %}
+                            {% if stall == value_stall %}
+                                <option selected>{{ stall }}</option>
                             {% else %}
-                                <option>{{ stal }}</option>
+                                <option>{{ stall }}</option>
                             {% endif %}
                         {% endfor %}
                     </select></p>
@@ -66,27 +67,16 @@
                             {% endif %}
                         {% endfor %}
                     </select></p>
-                <p><span>Выберите количество примыкающих плоскостей: </span>
-                    <select id="combo_box" name="ns">
-                        {% for number in number_list %}
-                            {% if number == value_ns %}
-                                <option selected>{{ number }}</option>
-                            {% else %}
-                                <option>{{ number }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select></p>
-
-                <p><span>Выберите количество болтов (шт.)</span>
-                    <select id="combo_box" name="number">
-                        {% for number in numbers_list %}
-                            {% if number == value_number %}
-                                <option selected>{{ number }}</option>
-                            {% else %}
-                                <option>{{ number }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select></p>
+                <p><span>Введите количество примыкающих плоскостей: </span><input name="ns" id="text_box" type="text"
+                                                                                  class="text-box"
+                                                                                  value="{{ value_width }}"
+                                                                                  onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
+                </p>
+                <p><span>Введите количество болтов: </span><input name="number" id="text_box" type="text"
+                                                                  class="text-box"
+                                                                  value="{{ value_width }}"
+                                                                  onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">шт.
+                </p>
                 <p><span>Введите растояние L: </span><input name="width" id="text_box" type="text" class="text-box"
                                                             value="{{ value_width }}"
                                                             onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
@@ -100,8 +90,8 @@
                 </p>
             </form>
         </div>
-        <div class="calculation">
-            <div class="result">
+        <div class="calculation result">
+            <div>
                 <p>Количество болтов:
                     <strong>{{ result_number }}</strong>шт.</p>
                 <p>Расчетные сопротивления:</p>
