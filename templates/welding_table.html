@@ -13,31 +13,31 @@
             <img src="{% static 'calc_img/welding_table/table2img2.png' %}" class="image">
         </div>
         <div class="calculation">
-            <form method="post" action="">
-                {% csrf_token %}
+            <form method="get" action="">
                 <p><span>Выберите единицы измерения для усилия: </span><input name="numeric" type="radio" class="radio"
-                                                                              value="1" id="radio_style">Кн
-                    <input name="numeric" type="radio" value="0" id="radio_style" class="radio" checked>Кгс</p>
-                <p><span>Введите величину реакции опоры (R):</span><input name="force" id="text_box" class="text-box"
+                                                                              value="1" id="radio1">Кн
+                    <input name="numeric" type="radio" value="0" id="radio2" class="radio" checked>Кгс</p>
+                <p><span>Введите величину реакции опоры (R):</span><input name="force" id="force" class="text-box"
                                                                           type="text" value="{{ value_force }}"
                                                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">
                 </p>
-                <p><span>Введите величину катета шва (h2):</span><input name="hweld" id="text_box" type="text"
-                                                                            class="text-box" value="{{ value_hweld }}"
-                                                                            onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">
-                см.</p>
-                <p><span>Введите длину сварного шва (L1):</span><input name="length" id="text_box" type="text"
-                                                                           class="text-box" value="{{ value_length }}"
-                                                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">
-                см.</p>
+                <p><span>Введите величину катета шва (h2):</span><input name="hweld" id="hweld" type="text"
+                                                                        class="text-box" value="{{ value_hweld }}"
+                                                                        onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">
+                    см.</p>
+                <p><span>Введите длину сварного шва (L1):</span><input name="length" id="length" type="text"
+                                                                       class="text-box" value="{{ value_length }}"
+                                                                       onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">
+                    см.</p>
                 <p>
-                    <button type="submit" class="button" id="button">Расчитать</button>
+                    <button type="button" class="button" id="table">Расчитать</button>
                 </p>
+            </form>
         </div>
-        <div class="calculation result">
+        <div class="calculation result" style="display: none;">
             <div>
-                <p>Длина шва L2: <strong>{{ result_length }}</strong> см.</p>
-                <p>Катет шва h1: <strong>{{ result_hweld }}</strong> см.</p>
+                <p>Длина шва L2: <strong class="len">{{ result_length }}</strong> см.</p>
+                <p>Катет шва h1: <strong class="hw">{{ result_hweld }}</strong> см.</p>
             </div>
         </div>
     </div>
@@ -46,5 +46,25 @@
 
     <script>
         $('.menu-bar > li:eq(2)').addClass('current');
+
+        $('#table').click(function () {
+            $('.result').slideDown();
+            $.ajax({
+                type: 'GET',
+                url: 'result/',
+                data: {
+                    'radio1': $('#radio1').val(),
+                    'force': $('#force').val(),
+                    'hweld': $('#hweld').val(),
+                    'length': $('#length').val()
+                },
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    $('.len').html(data[1]);
+                    $('.hw').html(data[2]);
+                }
+            });
+        })
     </script>
 {% endblock %}

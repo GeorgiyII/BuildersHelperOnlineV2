@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
+from django.views.generic import TemplateView, View
 from calculator.models import BoltArea, ResShear, ResCrushing, StallMark
 from math import ceil, sqrt, tan, cos
 
@@ -119,35 +120,6 @@ class SweepPipe(TemplateView):
         context = super(SweepPipe, self).get_context_data()
         return context
 
-    def post(self, request):
-        if request.method == 'POST':
-            responce = self.get_context_data()
-            if 'list' in request.POST:
-                responce['value_diameter_list'] = request.POST.get('diameter_list')
-                responce['value_thickness_list'] = request.POST.get('thickness_list')
-                responce['value_angle_list'] = request.POST.get('angle_list')
-                graphic = post_pipe_list(request)
-                responce['list_graphic'] = graphic
-                responce['result'] = good_vision(graphic)
-                responce['display1'] = 'display: block;'
-            elif 'pipe90' in request.POST:
-                responce['value_diameter_90'] = request.POST.get('diameter_90')
-                responce['value_thickness_90'] = request.POST.get('thickness_90')
-                responce['value_diameter_to_90'] = request.POST.get('diameter_to_90')
-                graphic = post_pipe90(request)
-                responce['list_graphic'] = graphic
-                responce['result'] = good_vision(graphic)
-                responce['display2'] = 'display: block;'
-            elif 'pipe' in request.POST:
-                responce['value_diameter'] = request.POST.get('diameter')
-                responce['value_thickness'] = request.POST.get('thickness')
-                responce['value_diameter_to'] = request.POST.get('diameter_to')
-                responce['value_angle'] = request.POST.get('angle')
-                graphic = post_pipe(request)
-                responce['list_graphic'] = graphic
-                responce['result'] = good_vision(graphic)
-                responce['display3'] = 'display: block;'
-            return render(request, self.template_name, responce)
 
 
 # Функции для расчета болтового соединения
@@ -340,7 +312,7 @@ def welding_table(data):
     h1 = rop / (2 * 0.7 * l1 * ryw)
     l2 = rop / (2 * 0.7 * 0.65 * h2 * ryw)
 
-    return [round(l2, 2), round(h1, 1)]
+    return {'1': round(l2, 2), '2': round(h1, 1)}
 
 
 # Функции для расчета рамного узла
@@ -417,55 +389,6 @@ def welding_bead(data):
 
 
 # Функции для расчета разверток труб
-def good_vision(data):
-    list_data_good = []
-
-    for index, value in data:
-        list_data_good.append('{}  :  {}'.format(index, value))
-
-    return '-----'.join(list_data_good)
-
-
-def post_pipe_list(request):
-    if request.method == 'POST':
-        diameter = request.POST.get('diameter_list')
-        thickness = request.POST.get('thickness_list')
-        angle = request.POST.get('angle_list')
-
-        return pipe_cylinder([diameter, thickness, angle])
-    else:
-        result = []
-
-        return result
-
-
-def post_pipe90(request):
-    if request.method == 'POST':
-        diameter = request.POST.get('diameter_90')
-        thickness = request.POST.get('thickness_90')
-        deameter_to = request.POST.get('diameter_to_90')
-
-        return pipe90([diameter, thickness, deameter_to])
-    else:
-        result = []
-
-        return result
-
-
-def post_pipe(request):
-    if request.method == 'POST':
-        diameter = request.POST.get('diameter')
-        thickness = request.POST.get('thickness')
-        deameter_to = request.POST.get('diameter_to')
-        angle = request.POST.get('angle')
-
-        return pipe_pipe([diameter, thickness, deameter_to, angle])
-    else:
-        result = []
-
-        return result
-
-
 def pipe_cylinder(data):
     for i in data:
         if i == '':
@@ -561,16 +484,15 @@ def pipe_cylinder(data):
 
     # Создание списка с индексом и значением
 
-    list_result = []
+    dict_result = {}
 
     for index, value in enumerate(list_cylinder):
-        a = [index, value]
-        list_result.append(a)
+        dict_result[index] = value
 
-    return list_result
+    return dict_result
 
 
-def pipe90(data):
+def pipe_90(data):
     for i in data:
         if i == '':
             return ['Нет данных']
@@ -658,13 +580,12 @@ def pipe90(data):
 
     # Создание списка с индексом и значением
 
-    list_result = []
+    dict_result = {}
 
     for index, value in enumerate(list_pipe90):
-        a = [index, value]
-        list_result.append(a)
+        dict_result[index] = value
 
-    return list_result
+    return dict_result
 
 
 def pipe_pipe(data):
@@ -768,10 +689,43 @@ def pipe_pipe(data):
 
     # Создание списка с индексом и значением
 
-    list_result = []
+    dict_result = {}
 
     for index, value in enumerate(list_pipe):
-        a = [index, value]
-        list_result.append(a)
+        dict_result[index] = value
 
-    return list_result
+    return dict_result
+
+
+def pipe_list(request):
+    value_diameter_list = request.GET.get('diameter_list')
+    value_thickness_list = request.GET.get('thickness_list')
+    value_angle_list = request.GET.get('angle_list')
+    result = pipe_cylinder([value_diameter_list, value_thickness_list, value_angle_list])
+    return JsonResponse(result)
+
+
+def pipe90(request):
+    value_diameter_pipe90 = request.GET.get('diameter_pipe90')
+    value_thickness_pipe90 = request.GET.get('thickness_pipe90')
+    value_diameter_to_pipe90 = request.GET.get('diameter_to_pipe90')
+    result = pipe_90([value_diameter_pipe90, value_thickness_pipe90, value_diameter_to_pipe90])
+    return JsonResponse(result)
+
+
+def pipe(request):
+    value_diameter_pipe = request.GET.get('diameter_pipe')
+    value_thickness_pipe = request.GET.get('thickness_pipe')
+    value_angle_pipe = request.GET.get('angle_pipe')
+    value_diameter_to_pipe = request.GET.get('diameter_to_pipe')
+    result = pipe_pipe([value_diameter_pipe, value_thickness_pipe, value_diameter_to_pipe, value_angle_pipe])
+    return JsonResponse(result)
+
+
+def table(request):
+    value_radio1 = request.GET.get('radio1')
+    value_force = request.GET.get('force')
+    value_hweld = request.GET.get('hweld')
+    value_length = request.GET.get('length')
+    result = welding_table([value_force, value_length, value_hweld, value_radio1])
+    return JsonResponse(result)

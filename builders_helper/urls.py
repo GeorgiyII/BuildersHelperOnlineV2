@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from main.views import TemplateMain
 from news.views import *
 from forum.views import *
@@ -34,4 +34,9 @@ urlpatterns = [
     path('calculator/beam/', WeldingBead.as_view(), name='beam'),
     path('calculator/sweep_pipe/', SweepPipe.as_view(), name='sweep_pipe'),
     path('contacts/', TemplateContacts.as_view(), name='contacts'),
+    re_path(r'^calculator/sweep_pipe/list/$', pipe_list),
+    re_path(r'^calculator/sweep_pipe/pipe90/$', pipe90),
+    re_path(r'^calculator/sweep_pipe/pipe/$', pipe),
+    re_path(r'^calculator/welding_table/result/$', table),
+
 ]

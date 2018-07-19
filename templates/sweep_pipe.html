@@ -13,126 +13,287 @@
         </div>
         <div class="calculation">
             <p class="caption">Пересечение трубы с плоскостью</p>
-            <form method="post" action="">
-                {% csrf_token %}
-                <p><span>Диаметр трубы (d):</span><input name="diameter_list" id="text_box" type="text" class="text-box"
+            <form method="get" action="">
+                <p><span>Диаметр трубы (d):</span><input name="diameter_list" id="diameter_list" type="text"
+                                                         class="text-box"
                                                          value="{{ value_diameter_list }}"
                                                          onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Толщина стенки (t):</span><input name="thickness_list" id="text_box" type="text"
+                <p><span>Толщина стенки (t):</span><input name="thickness_list" id="thickness_list" type="text"
                                                           class="text-box" value="{{ value_thickness_list }}"
                                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Угол пересечения (B):</span><input name="angle_list" id="text_box" type="text" class="text-box"
+                <p><span>Угол пересечения (B):</span><input name="angle_list" id="angle_list" type="text"
+                                                            class="text-box"
                                                             value="{{ value_angle_list }}"
                                                             onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">градусов
                 </p>
                 <p>
-                    <button type="submit" name="list" class="button" id="list">Расчитать</button>
+                    <button type="button" name="list" class="button" id="list">Расчитать</button>
                 </p>
             </form>
             <div class="img"><img src="{% static 'calc_img/sweep_pipe/img1.png' %}" width="200px"></div>
         </div>
-        <div class="calculation list" style="{{ display1 }}">
+        <div class="calculation list" style="display: none">
             <div class="coordinates">
-                <p>Result: {{ result }} </p>
+                <p class="show-hide list-show">Показать координаты</p>
+                <p class="result-list" style="display: none">Координаты</p>
             </div>
-            <div id="curve_chart1"></div>
+            <p class="show-hide graphic-list">Обновить график</p>
+            <div id="curve_chart1" style="display: none;"></div>
         </div>
         <div class="calculation">
             <p class="caption">Пересечение трубы с трубой под прямым углом</p>
-            <form method="post" action="">
-                {% csrf_token %}
-                <p><span>Диаметр трубы (d):</span><input name="diameter_90" id="text_box" type="text" class="text-box"
+            <form method="get" action="">
+                <p><span>Диаметр трубы (d):</span><input name="diameter_90" id="diameter_90" type="text"
+                                                         class="text-box"
                                                          value="{{ value_diameter_90 }}"
                                                          onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Толщина стенки (t, мм.):</span><input name="thickness_90" id="text_box" type="text"
+                <p><span>Толщина стенки (t, мм.):</span><input name="thickness_90" id="thickness_90" type="text"
                                                                class="text-box" value="{{ value_thickness_90 }}"
                                                                onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Диаметр трубы в которую идет врезка (D):</span><input name="diameter_to_90" id="text_box"
+                <p><span>Диаметр трубы в которую идет врезка (D):</span><input name="diameter_to_90" id="diameter_to_90"
                                                                                type="text"
                                                                                class="text-box"
                                                                                value="{{ value_diameter_to_90 }}"
                                                                                onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
                 <p>
-                    <button type="submit" name="pipe90" class="button" id="pipe90">Расчитать</button>
+                    <button type="button" name="pipe90" class="button" id="pipe90">Расчитать</button>
                 </p>
             </form>
             <div class="img"><img src="{% static 'calc_img/sweep_pipe/img2.png' %}" width="200px"></div>
         </div>
-        <div class="calculation pipe90" style="{{ display2 }}">
+        <div class="calculation pipe90" style="display: none">
             <div class="coordinates">
-                <p>Result: {{ result }} </p>
+                <p class="show-hide pipe90-show">Показать координаты</p>
+                <p class="result-pipe90" style="display: none">Координаты</p>
             </div>
-            <div id="curve_chart2"></div>
+            <p class="show-hide graphic-pipe90">Обновить график</p>
+            <div id="curve_chart2" style="display: none"></div>
         </div>
         <div class="calculation">
             <p class="caption">Пересечение трубы с трубой под произвольным углом</p>
-            <form method="post" action="">
-                {% csrf_token %}
-                <p><span>Диаметр трубы (d, мм.):</span><input name="diameter" id="text_box" type="text" class="text-box"
+            <form method="get" action="">
+                <p><span>Диаметр трубы (d, мм.):</span><input name="diameter" id="diameter" type="text" class="text-box"
                                                               value="{{ value_diameter }}"
                                                               onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Толщина стенки (t, мм.):</span><input name="thickness" id="text_box" type="text"
+                <p><span>Толщина стенки (t, мм.):</span><input name="thickness" id="thickness" type="text"
                                                                class="text-box" value="{{ value_thickness }}"
                                                                onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Диаметр трубы в которую идет врезка (D):</span><input name="diameter_to" id="text_box"
+                <p><span>Диаметр трубы в которую идет врезка (D):</span><input name="diameter_to" id="diameter_to"
                                                                                type="text"
                                                                                class="text-box"
                                                                                value="{{ value_diameter_to }}"
                                                                                onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">мм.
                 </p>
-                <p><span>Угол пересечения (B):</span><input name="angle" id="text_box" type="text" class="text-box"
+                <p><span>Угол пересечения (B):</span><input name="angle" id="angle" type="text" class="text-box"
                                                             value="{{ value_angle }}"
                                                             onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">градусов
                 </p>
                 <p>
-                    <button type="submit" name="pipe" class="button" id="pipe">Расчитать</button>
+                    <button type="button" name="pipe" class="button" id="pipe">Расчитать</button>
                 </p>
             </form>
             <div class="img"><img src="{% static 'calc_img/sweep_pipe/img3.png' %}" width="200px"></div>
         </div>
-        <div class="calculation pipe" style="{{ display3 }}">
+        <div class="calculation pipe" style="display: none">
             <div class="coordinates">
-                <p>Result: {{ result }}</p>
+                <p class="show-hide pipe-show">Показать координаты</p>
+                <p class="result-pipe" style="display: none">Координаты</p>
             </div>
-            <div id="curve_chart3"></div>
+            <p class="show-hide graphic-pipe">Обновить график</p>
+            <div id="curve_chart3" style="display: none"></div>
         </div>
     </div>
     {% include 'top_calc.html' %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        google.charts.load('current', {packages: ['corechart', 'line']});
-        google.charts.setOnLoadCallback(drawBasic);
-
-        function drawBasic() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Растояние');
-            data.addColumn('number', 'Линия реза');
-            data.addRows({{ list_graphic }});
-
-            var options = {
-                hAxis: {
-                    title: 'Секторы диаметра'
-                },
-                vAxis: {
-                    title: 'Координаты реза'
-                }
-            };
-
-            var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-            chart1.draw(data, options);
-            var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
-            chart2.draw(data, options);
-            var chart3 = new google.visualization.LineChart(document.getElementById('curve_chart3'));
-            chart3.draw(data, options);
-        };
-
         $('.menu-bar > li:eq(2)').addClass('current');
 
+        $('.list-show').click(function () {
+            if ($('.result-list').is(':hidden')) {
+                $('.result-list').show('fast');
+            }
+            else {
+                $('.result-list').hide('fast');
+            }
+        });
+        $('.pipe90-coord').click(function () {
+            if ($('.result-pipe90').is(':hidden')) {
+                $('.result-pipe90').show('fast');
+            }
+            else {
+                $('.result-pipe90').hide('fast');
+            }
+        });
+        $('.pipe-show').click(function () {
+            if ($('.result-pipe').is(':hidden')) {
+                $('.result-pipe').show('fast');
+            }
+            else {
+                $('.result-pipe').hide('fast');
+            }
+        });
+        var graphic = [];
+        $('#list').click(function () {
+            $('.list').slideDown();
+            var items = [];
+            $.ajax({
+                type: 'GET',
+                url: 'list/',
+                data: {
+                    'diameter_list': $('#diameter_list').val(),
+                    'thickness_list': $('#thickness_list').val(),
+                    'angle_list': $('#angle_list').val()
+                },
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    graphic = [];
+                    var ln = Object.keys(data).length;
+                    for (var i = 0; i < ln; i++) {
+                        items.push('<p>' + i + ' --- ' + data[i] + '</p>');
+                        var list = [i, data[i]];
+                        graphic.push(list);
+
+                    }
+                    $('.result-list').html(items);
+                }
+            });
+        });
+        $('.graphic-list').click(function () {
+            $('#curve_chart1').show();
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(listGraphic);
+
+            function listGraphic() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'Растояние');
+                data.addColumn('number', 'Линия реза');
+                data.addRows(graphic);
+
+                var options = {
+                    hAxis: {
+                        title: 'Секторы диаметра'
+                    },
+                    vAxis: {
+                        title: 'Координаты реза'
+                    }
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+
+                chart.draw(data, options);
+            }
+
+        });
+        var graphic2 = [];
+        $('#pipe90').click(function () {
+            $('.pipe90').slideDown();
+            var items = [];
+            $.ajax({
+                type: 'GET',
+                url: 'pipe90/',
+                data: {
+                    'diameter_pipe90': $('#diameter_90').val(),
+                    'thickness_pipe90': $('#thickness_90').val(),
+                    'diameter_to_pipe90': $('#diameter_to_90').val()
+                },
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    graphic2 = [];
+                    var ln = Object.keys(data).length;
+                    for (var i = 0; i < ln; i++) {
+                        items.push('<p>' + i + ' --- ' + data[i] + '</p>');
+                        var list = [i, data[i]];
+                        graphic2.push(list);
+
+                    }
+                    $('.result-pipe90').html(items);
+                }
+            });
+        });
+        $('.graphic-pipe90').click(function () {
+            $('#curve_chart2').show();
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(pipe90Graphic);
+
+            function pipe90Graphic() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'Растояние');
+                data.addColumn('number', 'Линия реза');
+                data.addRows(graphic2);
+
+                var options = {
+                    hAxis: {
+                        title: 'Секторы диаметра'
+                    },
+                    vAxis: {
+                        title: 'Координаты реза'
+                    }
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+
+                chart.draw(data, options);
+            }
+        });
+        var graphic3 = [];
+        $('#pipe').click(function () {
+            $('.pipe').slideDown();
+            var items = [];
+            $.ajax({
+                type: 'GET',
+                url: 'pipe/',
+                data: {
+                    'diameter_pipe': $('#diameter').val(),
+                    'thickness_pipe': $('#thickness').val(),
+                    'angle_pipe': $('#angle').val(),
+                    'diameter_to_pipe': $('#diameter_to').val()
+                },
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    graphic3 = [];
+                    var ln = Object.keys(data).length;
+                    for (var i = 0; i < ln; i++) {
+                        items.push('<p>' + i + ' --- ' + data[i] + '</p>');
+                        var list = [i, data[i]];
+                        graphic3.push(list);
+
+                    }
+                    $('.result-pipe').html(items);
+                }
+            });
+
+        });
+        $('.graphic-pipe').click(function () {
+            $('#curve_chart3').show();
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(pipeGraphic);
+
+            function pipeGraphic() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'Растояние');
+                data.addColumn('number', 'Линия реза');
+                data.addRows(graphic3);
+
+                var options = {
+                    hAxis: {
+                        title: 'Секторы диаметра'
+                    },
+                    vAxis: {
+                        title: 'Координаты реза'
+                    }
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart3'));
+
+                chart.draw(data, options);
+            }
+        });
     </script>
 {% endblock %}

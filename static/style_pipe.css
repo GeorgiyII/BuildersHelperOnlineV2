@@ -17,3 +17,11 @@
     height: 250px;
     padding-bottom: 20px;
 }
+.show-hide {
+    color: #a56375;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.show-hide:hover {
+    color: #83b3c9;
+}
