@@ -1,74 +1,31 @@
 {% extends 'index.html' %}
 {% load staticfiles %}
 {% block content %}
-            <div class="tab-name"><img src="{% static "images/home.png" %}"><span>Главная страница</span></div>
-            <div class="middle">
-                <div class="prev-articles first">
-                    <img src="static/1.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
+    <div class="tab-name"><img src="{% static "images/home.png" %}"><span>Главная страница</span></div>
+    <div class="content-wrapper">
+        <div class="middle">
+            {% for article in object_list %}
                 <div class="prev-articles">
-                    <img src="static/2.jpg" class="image">
-                    <p class="caption">Очень большой и длинный заголовок но в 3 строки должен выровнятся</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
+                    <img src="{{ article.article_image.url }}" class="image">
+                    <p class="caption">{{ article.article_capture }}</p>
+                    <p class="author">{{ article.article_author }} //{{ article.article_date }}</p>
+                    <p class="text">{{ article.article_short }}</p>
+                    <div class="full-button"><a href="{% url "news" article.id %}"><img
+                            src="{% static "images/right2.png" %}"
+                            class="arrow"><span>Далее</span></a></div>
                 </div>
-                <div class="prev-articles">
-                    <img src="static/3.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/4.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/1.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/2.jpg" class="image">
-                    <p class="caption">Очень большой и длинный заголовок но в 3 строки должен выровнятся</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/3.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="prev-articles">
-                    <img src="static/4.jpg" class="image">
-                    <p class="caption">Очень большой и очень длинный заголовок, который может не поместится</p>
-                    <p class="author">Автор статьи и дата публикации</p>
-                    <p class="text">Текст статьи, а точнее ее цитата для понимания смысла</p>
-                    <div class="full-button"><a href="{% url "news" %}"><img src="{% static "images/right2.png" %}" class="arrow"><span>Далее</span></a></div>
-                </div>
-                <div class="pages">
-                    <p>Страницы: </p>
-                    <div class="prev"><a href=""><img src="{% static "images/left.png" %}"></a></div>
-                    <div><a href="">1</a></div>
-                    <div><a href="">2</a></div>
-                    <div class="next"><a href=""><img src="{% static "images/right.png" %}"></a></div>
-                </div>
+            {% endfor %}
+            <div class="pages">
+                <p>Страницы: </p>
+                <div class="prev"><a href="">Пр.</a></div>
+                <div><a href="">1</a></div>
+                <div><a href="">2</a></div>
+                <div class="next"><a href="">Сл.</a></div>
             </div>
-           {% include 'top_news.html' %}
-        <div class="back"><a href="#header"><img src="{% static "images/bolt.png" %}"></a></div>
+            <div class="back"><a href="#header"><img src="{% static "images/bolt.png" %}"></a></div>
+        </div>
+        {% include 'top_news.html' %}
+    </div>
     <script>
         $('.menu-bar li:eq(0)').addClass('current');
     </script>

@@ -112,13 +112,13 @@
     $('.sub-menu-bar').mouseleave(function () {
         $('.sub-menu-bar').slideUp('normal');
         $('#active-bar').css('background-color', '');
-        });
+    });
     // Функция делает анимацию для кнопок далее
     $('.full-button').mouseenter(function () {
-        $('.arrow').css('margin-right', '0');
+        $('img', this).css('margin-right', '0');
     });
     $('.full-button').mouseleave(function () {
-        $('.arrow').css('margin-right', '5px');
+        $('img', this).css('margin-right', '5px');
     });
     // Функция для появления кнопки на начало сайта при скроле вниз и исчезании ее в начале сайта
     window.onscroll = function () {

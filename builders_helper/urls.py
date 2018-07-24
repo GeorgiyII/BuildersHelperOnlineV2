@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from main.views import TemplateMain
+from news.views import TemplateMain
 from news.views import *
 from forum.views import *
 from contacts.views import *
@@ -24,8 +24,9 @@ from calculator.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateMain.as_view(), name='main'),
-    path('news/', TemplateNews.as_view(), name='news'),
-    path('forum/', TemplateForum.as_view(), name='forum'),
+    re_path(r'^(?P<pk>\d+)$', TemplateNews.as_view(), name='news'),
+    path('forum/', MessageList.as_view(), name='forum'),
+    path('forum/create/', MessageCreateView.as_view(), name='create_message'),
     path('calculator/', TemplateCalculator.as_view(), name='calculator'),
     path('calculator/bolts_number/', BoltsNumber.as_view(), name='bolts_number'),
     path('calculator/welding_fas/', WeldingFas.as_view(), name='welding_fas'),
@@ -38,5 +39,4 @@ urlpatterns = [
     re_path(r'^calculator/sweep_pipe/pipe90/$', pipe90),
     re_path(r'^calculator/sweep_pipe/pipe/$', pipe),
     re_path(r'^calculator/welding_table/result/$', table),
-
 ]

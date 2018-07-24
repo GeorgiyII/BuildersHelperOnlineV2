@@ -45,7 +45,7 @@
 }
 /*Формы для написания сообщений*/
 .content .form {
-	display: none;
+	display: block;
 }
 .content .form .message-text {
 	margin-top: 10px;

@@ -3,87 +3,53 @@
 {% block content %}
     <div class="tab-name"><img src="{% static "images/forum.png" %}"><span>Форум</span></div>
     <div class="middle">
-        <p class="show-hide"><a href="#">Написать сообщение</a></p>
-        <div class="message form">
-            <form method="post">
-                <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
-                <input type="text" name="theme" class="theme-text" placeholder="Название темы">
-                <button type="button" name="send-message" class="button">Отправить сообщение</button>
+        <p class="show-hide show-hide-message-form">Написать сообщение</p>
+        <div class="message message-form">
+            <form method="post" action="{% url 'create_message' %}">
+                {% csrf_token %}
+                <div> {{ form.as_p }} </div>
+                <button type="submit" name="send-message" class="button">Отправить сообщение</button>
             </form>
         </div>
-        <div class="message">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст,
-                который не помещается в одну строку</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-        </div>
-        <p class="show-hide"><a href="#">Написать комментарии</a></p>
-        <div class="message comment form">
-            <form method="post">
-                <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
-                <input type="text" name="theme" class="theme-text" placeholder="Название темы">
-                <button type="button" name="send-message" class="button">Отправить сообщение</button>
-            </form>
-        </div>
-        <p class="show-hide"><a href="#">Показать комментарии</a></p>
-        <div class="message comment">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Тект комментария, можно не очень длинный</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в
-                одну строку то должно перенестись нормально</a></p>
-        </div>
-        <p class="show-hide"><a href="#">Написать комментарии</a></p>
-        <div class="message comment-to-comment form">
-            <form method="post">
-                <textarea name="message" class="message-text" placeholder="Текст сообщения"></textarea>
-                <input type="text" name="theme" class="theme-text" placeholder="Название темы">
-                <button type="button" name="send-message" class="button">Отправить сообщение</button>
-            </form>
-        </div>
-        <div class="message comment-to-comment">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения
-                модели</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-        </div>
-        <div class="message">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст,
-                который не помещается в одну строку</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-        </div>
-        <p class="show-hide"><a href="#">Показать комментарии</a></p>
-        <div class="message comment">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Тект комментария, можно не очень длинный</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в
-                одну строку то должно перенестись нормально</a></p>
-        </div>
-        <div class="message comment-to-comment">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения
-                модели</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-        </div>
-        <div class="message">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Текст сообщения, чуть-чуть подлинее, чтоб было видно как ведет себя очень длинный текст,
-                который не помещается в одну строку</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-        </div>
-        <p class="show-hide"><a href="#">Показать комментарии</a></p>
-        <div class="message comment">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Тект комментария, можно не очень длинный</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска и если они не помещается в
-                одну строку то должно перенестись нормально</a></p>
-        </div>
-        <div class="message comment-to-comment">
-            <p class="author">Автор сообщения <span>//дата публикации</span></p>
-            <p class="text">Тект комментария к комментарию, наверно подлинее для лучьшего тестирования поведения
-                модели</p>
-            <p class="theme"><a href="#">Тема сообщения, для возможной сортировки и поиска</a></p>
-        </div>
+        {% for message in object_list %}
+            <div class="message">
+                <p class="author">{{ message.message_author }} <span>//{{ message.message_date }}</span></p>
+                <p class="text">{{ message.message_text }}</p>
+                <p class="theme"><a href="#">{{ message.message_theme }}///{{ message.id }}</a></p>
+            </div>
+            <p class="show-hide show-hide show-hide-comment-form">Написать комментарии</p>
+            <div class="message comment comment-form">
+                <form method="post" action="{% url 'create_message' %}">
+                    {% csrf_token %}
+                    {{ message.get_comment_form.as_p }}
+                    <button type="submit" name="send-message" class="button">Отправить сообщение</button>
+                </form>
+            </div>
+            <p class="show-hide show-hide-comment">Показать комментарии</p>
+            {% for comment in message.get_comments %}
+                <div class="message comment">
+                    <p class="author">{{ comment.message_author }} <span>//{{ comment.message_date }}</span></p>
+                    <p class="text">{{ comment.message_text }}</p>
+                    <p class="theme"><a href="#">Т{{ comment.message_theme }}///{{ comment.id }}</a></p>
+                </div>
+                <p class="show-hide show-hide-comment-2-comment">Написать комментарии</p>
+                <div class="message comment-to-comment comment-2-form">
+                    <form method="post" action="{% url 'create_message' %}">
+                        {% csrf_token %}
+                        {{ comment.get_comment_form.as_p }}
+                        <button type="submit" name="send-message" class="button">Отправить сообщение</button>
+                    </form>
+                </div>
+                <p class="show-hide show-hide-comment-2-comment">Показать комментарии</p>
+                {% for comment in comment.get_comments %}
+                    <div class="message comment-to-comment">
+                        <p class="author">{{ comment.message_author }} <span>//{{ comment.message_date }}</span></p>
+                        <p class="text">{{ comment.message_text }}</p>
+                        <p class="theme"><a href="#">{{ comment.message_theme }}///{{ comment.id }}</a></p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
         <div class="pages">
             <p>Страницы: </p>
             <div class="prev"><a href="">Пр.</a></div>
@@ -94,7 +60,56 @@
     </div>
     {% include 'top_theme.html' %}
     <div class="back"><a href="#"><img src="{% static 'images/bolt.png' %}" width="50px" height="50px"></a></div>
-     <script>
+    <script>
         $('.menu-bar li:eq(1)').addClass('current');
+
+{#        $('.show-hide-message-form').click(function () {#}
+{#            if ($('.message-form').is(':hidden')) {#}
+{#                $('.message-form').slideDown('fast');#}
+{#                $('.show-hide-message-form').text('Скрыть форму')#}
+{#            }#}
+{#            else {#}
+{#                $('.message-form').slideUp('fast');#}
+{#                $('.show-hide-message-form').text('Написать сообщение')#}
+{#            }#}
+{#        });#}
+{#        $('.show-hide-comment-form').click(function () {#}
+{#            if ($('.comment-form').attr('id') == $('.comment').attr('id')) {#}
+{#                if ($('.comment-form').is(':hidden')) {#}
+{#                    $('.comment-form').slideDown('fast');#}
+{#                    $('.show-hide-comment-form').text('Скрыть форму')#}
+{#                }#}
+{#                else {#}
+{#                    $('.comment-form').slideUp('fast');#}
+{#                    $('.show-hide-comment-form').text('Написать комментарий')#}
+{#                }#}
+{#            }#}
+{#        });#}
+{#        $('.show-hide-comment-2-comment').click(function () {#}
+{#            if ($('.comment-2-form').is(':hidden')) {#}
+{#                $('.comment-2-form').slideDown('fast');#}
+{#                $('.show-hide-comment-2-comment').text('Скрыть форму')#}
+{#            }#}
+{#            else {#}
+{#                $('.comment-2-form').slideUp('fast');#}
+{#                $('.show-hide-comment-2-comment').text('Написать комментарий')#}
+{#            }#}
+{#        });#}
+{#        $('.show-hide-comment').click(function () {#}
+{#            if ($('.comment').attr('id') == $('.message').attr('id')) {#}
+{#                if ($('.comment').is(':hidden')) {#}
+{#                    $('.comment').slideDown('fast');#}
+{#                    $('.show-hide-comment').text('Скрыть комментарии')#}
+{#                }#}
+{#                else {#}
+{#                    $('.comment').slideUp('fast');#}
+{#                    $('.show-hide-comment').text('Показать комментарии')#}
+{#                }#}
+{#            }#}
+{##}
+{#        });#}
+{#        $('.show-hide-comment-2-comment').click(function () {#}
+{##}
+{#        })#}
     </script>
 {% endblock %}
