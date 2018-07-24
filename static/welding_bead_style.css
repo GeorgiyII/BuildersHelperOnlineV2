@@ -3,11 +3,13 @@
 	margin-left: 140px;
 	margin-top: 50px;
 }
-.content .middle .calculation .beam-hst {
+.content .middle .calculation .hst {
 	display: block;
 	position: absolute;
-	top: 330px;
-	left: 600px;
+	font-size: 35px;
+	top: 480px;
+	left: 530px;
+	transform: rotate(-100grad);
 }
 .content .middle .calculation .beam-hst input {
 	margin-left: 10px;
@@ -17,10 +19,11 @@
 	border: 1px solid black;
 	border-radius: 5px;
 }
-.content .middle .calculation .beam-tst {
+.content .middle .calculation .tst {
 	display: block;
 	position: absolute;
-	top: 250px;
+	font-size: 35px;
+	top: 450px;
 	left: 250px;
 }
 .content .middle .calculation .beam-tst input {
@@ -31,10 +34,11 @@
 	border: 1px solid black;
 	border-radius: 5px;
 }
-.content .middle .calculation .beam-b {
+.content .middle .calculation .b {
 	display: block;
 	position: absolute;
-	top: 20px;
+	font-size: 35px;
+	top: 220px;
 	left: 350px;
 }
 .content .middle .calculation .beam-b input {
@@ -45,11 +49,13 @@
 	border: 1px solid black;
 	border-radius: 5px;
 }
-.content .middle .calculation .beam-tp {
+.content .middle .calculation .tp {
 	display: block;
 	position: absolute;
-	top: 170px;
-	left: 110px;
+	font-size: 35px;
+	top: 280px;
+	left: 180px;
+	transform: rotate(-100grad);
 }
 .content .middle .calculation .beam-tp input {
 	margin-left: 10px;

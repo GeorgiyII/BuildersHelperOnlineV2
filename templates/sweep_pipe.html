@@ -38,9 +38,9 @@
             <div class="coordinates">
                 <p class="show-hide list-show">Показать координаты</p>
                 <p class="result-list" style="display: none">Координаты</p>
+                <p class="show-hide graphic-list">Показать диаграмму реза</p>
             </div>
-            <p class="show-hide graphic-list">Обновить график</p>
-            <div id="curve_chart1" style="display: none;"></div>
+            <div id="curve_chart1"></div>
         </div>
         <div class="calculation">
             <p class="caption">Пересечение трубы с трубой под прямым углом</p>
@@ -70,9 +70,9 @@
             <div class="coordinates">
                 <p class="show-hide pipe90-show">Показать координаты</p>
                 <p class="result-pipe90" style="display: none">Координаты</p>
+                <p class="show-hide graphic-pipe90">Показать диаграмму реза</p>
             </div>
-            <p class="show-hide graphic-pipe90">Обновить график</p>
-            <div id="curve_chart2" style="display: none"></div>
+            <div id="curve_chart2"></div>
         </div>
         <div class="calculation">
             <p class="caption">Пересечение трубы с трубой под произвольным углом</p>
@@ -105,9 +105,9 @@
             <div class="coordinates">
                 <p class="show-hide pipe-show">Показать координаты</p>
                 <p class="result-pipe" style="display: none">Координаты</p>
+                <p class="show-hide graphic-pipe">Показать диаграмму реза</p>
             </div>
-            <p class="show-hide graphic-pipe">Обновить график</p>
-            <div id="curve_chart3" style="display: none"></div>
+            <div id="curve_chart3"></div>
         </div>
     </div>
     {% include 'top_calc.html' %}
@@ -123,7 +123,7 @@
                 $('.result-list').hide('fast');
             }
         });
-        $('.pipe90-coord').click(function () {
+        $('.pipe90-show').click(function () {
             if ($('.result-pipe90').is(':hidden')) {
                 $('.result-pipe90').show('fast');
             }
@@ -167,6 +167,7 @@
             });
         });
         $('.graphic-list').click(function () {
+            $('.graphic-list').text('Обновить диаграмму');
             $('#curve_chart1').show();
             google.charts.load('current', {packages: ['corechart', 'line']});
             google.charts.setOnLoadCallback(listGraphic);
@@ -219,6 +220,7 @@
             });
         });
         $('.graphic-pipe90').click(function () {
+            $('.graphic-pipe90').text('Обновить диаграмму');
             $('#curve_chart2').show();
             google.charts.load('current', {packages: ['corechart', 'line']});
             google.charts.setOnLoadCallback(pipe90Graphic);
@@ -272,6 +274,7 @@
 
         });
         $('.graphic-pipe').click(function () {
+            $('.graphic-pipe').text('Обновить диаграмму');
             $('#curve_chart3').show();
             google.charts.load('current', {packages: ['corechart', 'line']});
             google.charts.setOnLoadCallback(pipeGraphic);

@@ -5,20 +5,34 @@
     <div class="middle">
         <div class="description">
             <p class="caption">Расчет характеристик сварного двутавра</p>
-            <p class="text">Данная программа расчитывает вес погонного метра и момента инерции для сварного двутавра.</p>
-            <img src="{% static 'calc_img/welding_bead/weld_beadimg.png' %}" class="image">
+            <p class="text">Данная программа расчитывает вес погонного метра и момента инерции для сварного
+                двутавра.</p>
         </div>
         <div class="calculation">
-            <img src="{% static 'images/weld_beadimg.png' %}" class="image">
             <form method="post" action="">
-                <p class="beam-hst"><input name="height" id="text_box" type="text" value="{{ value_height }}"
-                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.</p>
-                <p class="beam-tst"><input name="tst" id="text_box" type="text" value="{{ value_tst }}"
-                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.</p>
-                <p class="beam-b"><input name="width" id="text_box" type="text" value="{{ value_width }}"
-                                         onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.</p>
-                <p class="beam-tp"><input name="tp" id="text_box" type="tp" value="{{ value_tp }}"
-                                          onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.</p>
+                <p class="beam-hst"><span>Введите высоту стенки:</span><input class="input-hst" name="height"
+                                                                              id="text_box" type="text"
+                                                                              value="{{ value_height }}"
+                                                                              onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
+                </p>
+                <p class="beam-tst"><span>Введите толщину стенки:</span><input class="input-tst" name="tst"
+                                                                               id="text_box" type="text"
+                                                                               value="{{ value_tst }}"
+                                                                               onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
+                </p>
+                <p class="beam-b"><span>Введите ширину полки:</span><input class="input-b" name="width" id="text_box"
+                                                                           type="text" value="{{ value_width }}"
+                                                                           onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
+                </p>
+                <p class="beam-tp"><span>Введите толщину полки:</span><input class="input-tp" name="tp" id="text_box"
+                                                                             type="tp" value="{{ value_tp }}"
+                                                                             onkeyup="this.value=this.value.replace(/[^\d.]/ig, '')">см.
+                </p>
+                <img src="{% static 'calc_img/welding_bead/weld_beadimg.png' %}" class="image">
+                <p class="hst"></p>
+                <p class="tst"></p>
+                <p class="b"></p>
+                <p class="tp"></p>
                 <p>
                     <button type="submit" id="button" class="button">Расчитать</button>
                 </p>
@@ -34,5 +48,22 @@
     {% include 'top_calc.html' %}
     <script>
         $('.menu-bar > li:eq(2)').addClass('current');
+
+        $('.input-hst').focusout(function () {
+            var value = $('.input-hst').val();
+            $('.hst').text(value + ' см.')
+        });
+        $('.input-tst').focusout(function () {
+            var value = $('.input-tst').val();
+            $('.tst').text(value + ' см.')
+        });
+        $('.input-b').focusout(function () {
+            var value = $('.input-b').val();
+            $('.b').text(value + ' см.')
+        });
+        $('.input-tp').focusout(function () {
+            var value = $('.input-tp').val();
+            $('.tp').text(value + ' см.')
+        })
     </script>
 {% endblock %}
